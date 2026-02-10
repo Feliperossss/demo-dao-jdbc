@@ -32,7 +32,7 @@ public class Program {
 		
 		System.out.println("\n\n=== test 4: seller insert ====\n\n");
 		Seller newSeller = new Seller(
-				2,"felipe","felipe@gmail.com", LocalDate.parse("2006-02-23"),2000.0,new Department(2, "Eletronics"));
+				null,"felipe","felipe@gmail.com", LocalDate.parse("2006-02-23"),2000.0,new Department(2, "Eletronics"));
 		
 		sellerDao.insert(newSeller);
 		
@@ -40,6 +40,23 @@ public class Program {
 		for(Seller obj: list3) {
 			System.out.println(obj);
 		}
+		
+		System.out.println("\n\n=== test 5: seller update ====\n\n");
+		
+		
+		Seller newSeller2 = new Seller(4,"adaWong","ada@gmail.com", LocalDate.parse("1995-02-23"),2000.0,new Department(2, "Eletronics"));
+		sellerDao.update(newSeller2 );
+		
+		
+		List<Seller> list4 = sellerDao.findAll();
+		for(Seller obj: list4) {
+			System.out.println(obj);
+		}
+		
+		
+		
+		
+		
 	}
 
 
