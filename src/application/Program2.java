@@ -28,10 +28,15 @@ public class Program2 {
 		}
 		
 		
-		System.out.println("\n\n=== test 4: department insert ====\n\n");
+		System.out.println("\n\n=== test 3: department insert ====\n\n");
 		Department dep = new Department(null, "Cosmetics");
 		departmentDao.insert(dep);
+		System.out.println("insert complete");
 		
+		System.out.println("\n\n=== test 4: department update ====\n\n");
+		Department dep2 = new Department(3, "Fashion week");
+		departmentDao.update(dep2);
+		System.out.println("update complete");
 		
 		sc.close();
 		
