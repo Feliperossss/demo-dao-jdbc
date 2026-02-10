@@ -6,7 +6,7 @@ import java.util.Scanner;
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
-import model.entities.Seller;
+
 
 
 public class Program2 {
@@ -27,6 +27,10 @@ public class Program2 {
 			System.out.println(obj);
 		}
 		
+		
+		System.out.println("\n\n=== test 4: department insert ====\n\n");
+		Department dep = new Department(null, "Cosmetics");
+		departmentDao.insert(dep);
 		
 		
 		sc.close();
