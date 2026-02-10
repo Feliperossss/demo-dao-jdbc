@@ -18,7 +18,7 @@ public class Program {
 		
 		System.out.println("\n\n=== test 1: seller find by id ====\n\n");
 		System.out.println("enter id for search teste: ");
-		sellerDao.deleteById(sc.nextInt());
+		sellerDao.findById(sc.nextInt());
 		System.out.println("search complete");
 		
 		
