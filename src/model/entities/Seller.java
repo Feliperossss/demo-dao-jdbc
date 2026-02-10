@@ -17,6 +17,11 @@ public class Seller implements Serializable {
 	private Department department;
 	
 	
+	
+	public Seller() {
+		super();
+	}
+
 	public Seller(Integer id, String name, String email, LocalDate birthDate, Double baseSalary,
 			Department department) {
 		this.id = id;
@@ -58,6 +63,26 @@ public class Seller implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public void setBaseSalary(Double baseSalary) {
+		this.baseSalary = baseSalary;
 	}
 
 	@Override
