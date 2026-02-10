@@ -21,6 +21,7 @@ public class SellerDaoJDBC implements SellerDao{
 	public SellerDaoJDBC(Connection conn) {
 		this.conn = conn;
 	}
+	
 
 	@Override
 	public void insert(Seller obj) {
@@ -51,25 +52,14 @@ public class SellerDaoJDBC implements SellerDao{
 					+"ON seller.DepartmentId = department.Id "  
 					+"WHERE seller.Id = ?" );
 			
+			System.out.println("ID recebido: " + id);
 			st.setInt(1, id);
-			
 			rs = st.executeQuery();
 			if(!rs.next()) {
 				return null;
 			}
-			
-			
-			Department dep = new Department();
-			dep.setId(rs.getInt("DepartmentId"));
-			dep.setName(rs.getString("DepName"));
-			Seller obj = new Seller();
-			obj.setDepartment(dep);
-			obj.setId(rs.getInt("Id"));
-			obj.setName(rs.getString("Name"));
-			obj.setEmail(rs.getString("Email"));
-			obj.setBirthDate(rs.getTimestamp("BirthDate").toLocalDateTime().toLocalDate());
-			obj.setBaseSalary(rs.getDouble("BaseSalary"));
-			
+			Department dep = instantiateDepartment(rs);
+			Seller obj = instantiateSeller(rs, dep);
 			return obj;
 			
 		}
@@ -82,6 +72,28 @@ public class SellerDaoJDBC implements SellerDao{
 		}
 		
 	}
+
+	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+		 Seller obj = new Seller();
+			obj.setDepartment(dep);
+			obj.setId(rs.getInt("Id"));
+			obj.setName(rs.getString("Name"));
+			obj.setEmail(rs.getString("Email"));
+			obj.setBirthDate(rs.getTimestamp("BirthDate").toLocalDateTime().toLocalDate());
+			obj.setBaseSalary(rs.getDouble("BaseSalary"));
+			
+			return obj;
+	}
+
+
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		
+		Department dep  = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
+	}
+
 
 	@Override
 	public List<Seller> findAll() {
